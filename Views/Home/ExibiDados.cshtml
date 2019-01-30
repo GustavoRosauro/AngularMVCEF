@@ -1,0 +1,61 @@
+﻿@model IEnumerable<angular.Models.Pessoa>
+
+@{
+    ViewBag.Title = "ExibiDados";
+}
+
+<h2>ExibiDados</h2>
+
+<p>
+</p>
+<div ng-app="HomeEdit" ng-controller="HomeController">
+    <div ng-repeat="dados in lista">
+        <h3>Editar</h3>
+        <input ng-model="dados.Id" hidden/>
+        <label>Nome</label>
+        <input class="form-control" name="nome" ng-model="dados.Nome" />
+        <label>Sobrenome</label>
+        <input type="text"  name="sobrenome"  class="form-control" ng-model="dados.Sobrenome" />
+        <label>Idade</label>
+        <input type="text" name="idade"  class="form-control" ng-model="dados.Idade" />
+        <br />
+        <br />
+    <input type="button" ng-click="Editar(dados)" value="Confirmar" class="btn btn-success" />
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sobrenome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idade)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sobrenome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idade)
+                </td>
+                <td>
+                    <input type="button" ng-click="BuscaDados(@item.Id)" class="btn btn-warning" value="Editar" /> |
+                    <input type="button" ng-click="Deletar(@item.Id)" class="btn btn-danger" value="Deletar"/>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/Editar.js"></script>
